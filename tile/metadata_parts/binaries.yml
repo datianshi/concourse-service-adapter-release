@@ -1,0 +1,40 @@
+---
+name: pcfs-concourse
+product_version: 0.0.1
+metadata_version: '1.10'
+minimum_version_for_upgrade: 0.0.0
+stemcell_criteria:
+  os: ubuntu-trusty
+  version: '3421.9'
+  requires_cpi: false
+releases:
+- name: on-demand-service-broker
+  file: on-demand-service-broker-0.17.0.tgz
+  version: 0.17.0
+  md5: f74858b0c7930f17e03e5022ecf0fbfd
+  url:
+- name: concourse-service-adaptor
+  file: concourse-service-adaptor-0+dev.3.tgz
+  version: 0+dev.3
+  md5: 13f54ab842cd0ee3702d6c50d4ed5550
+  url:
+- name: concourse
+  file: concourse-3.3.4.tgz
+  version: 3.3.4
+  md5: 248a66f5b0667860448d467a83aec459
+  url:
+- name: garden-runc
+  file: garden-runc-release-1.9.2.tgz
+  version: 1.9.2
+  md5: 8207665c2a223b77c6fc5e662e59c397
+  url:
+- name: routing
+  file: routing-0.157.0.tgz
+  version: 1.9.2
+  md5: 2f1845c8aea6f3f2efd0ee49fc4d0553
+requires_product_versions:
+- name: cf
+  version: ">= 1.10.3"
+provides_product_versions:
+- name: pcfs-concourse
+  version: 0.0.1

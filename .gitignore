@@ -10,3 +10,6 @@ src/github.com/onsi
 src/github.com/pivotal-cf
 src/golang.org
 src/gopkg.in
+tile/releases/
+*.pivotal
+*.pivotal.*

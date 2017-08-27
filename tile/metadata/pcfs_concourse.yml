@@ -1,0 +1,481 @@
+---
+name: pcfs-concourse
+product_version: 0.0.1
+metadata_version: '1.10'
+minimum_version_for_upgrade: 0.0.0
+stemcell_criteria:
+  os: ubuntu-trusty
+  version: '3421.9'
+  requires_cpi: false
+releases:
+- name: on-demand-service-broker
+  file: on-demand-service-broker-0.17.0.tgz
+  version: 0.17.0
+  md5: f74858b0c7930f17e03e5022ecf0fbfd
+  url: 
+- name: concourse-service-adaptor
+  file: concourse-service-adaptor-0+dev.3.tgz
+  version: 0+dev.3
+  md5: 13f54ab842cd0ee3702d6c50d4ed5550
+  url: 
+- name: concourse
+  file: concourse-3.3.4.tgz
+  version: 3.3.4
+  md5: 248a66f5b0667860448d467a83aec459
+  url: 
+- name: garden-runc
+  file: garden-runc-release-1.9.2.tgz
+  version: 1.9.2
+  md5: 8207665c2a223b77c6fc5e662e59c397
+  url: 
+- name: routing
+  file: routing-0.157.0.tgz
+  version: 1.9.2
+  md5: 2f1845c8aea6f3f2efd0ee49fc4d0553
+requires_product_versions:
+- name: cf
+  version: ">= 1.10.3"
+provides_product_versions:
+- name: pcfs-concourse
+  version: 0.0.1
+label: Concourse
+description: Concourse service for application CI/CD
+icon_image: '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
+
+'
+rank: 50
+service_broker: true
+post_deploy_errands:
+- name: broker-registrar
+  run_post_deploy_errand_default: true
+- name: register-on-demand-broker
+  run_post_deploy_errand_default: true
+- name: on-demand-broker-smoke-tests
+  run_post_deploy_errand_default: true
+- name: upgrade-all-service-instances
+  run_post_deploy_errand_default: true
+pre_delete_errands:
+- name: broker-deregistrar
+- name: delete-all-service-instances-and-deregister-broker
+form_types:
+- name: concourse-small
+  label: Small Plan
+  description: Small Plan Configuration
+  property_inputs:
+  - reference: ".properties.small_plan_selector"
+    label: Plan
+    selector_property_inputs:
+    - reference: ".properties.small_plan_selector.inactive"
+      label: Plan Inactive
+    - reference: ".properties.small_plan_selector.active"
+      label: Plan Active
+      property_inputs:
+      - reference: ".properties.small_plan_selector.active.name"
+        label: Plan name
+        description: The plan name.
+      - reference: ".properties.small_plan_selector.active.description"
+        label: Plan description
+        description: The plan description should include information about the plan
+          relevant to app developers, including disk, VM size.
+      - reference: ".properties.small_plan_selector.active.instance_limit"
+        label: Plan Quota
+        description: Maximum number of Concourse service instances for this plan.
+      - reference: ".properties.small_plan_selector.active.cf_service_access"
+        label: CF Service Access
+        description: Controls whether this service plan is displayed on the marketplace.
+      - reference: ".properties.small_plan_selector.active.az_single_select"
+        label: AZ to deploy Concourse instances
+        description: One of the AZs of the service network (configured in the Ops
+          Manager Director tile). Changes can cause data loss.
+      - reference: ".properties.small_plan_selector.active.web.vm_type"
+        label: Web Server VM type
+        description: Web instance type
+      - reference: ".properties.small_plan_selector.active.db.vm_type"
+        label: Database VM Type
+        description: Database instance type
+      - reference: ".properties.small_plan_selector.active.db.disk_size"
+        label: Database Disk Size
+        description: Persistent disk for concourse database
+      - reference: ".properties.small_plan_selector.active.worker.vm_type"
+        label: Worker VM Type
+        description: Worker instance type
+      - reference: ".properties.small_plan_selector.active.worker.instances"
+        label: Number of instances worker
+        description: Number of instances worker
+job_types:
+- name: concourse-on-demand-broker
+  resource_label: Concourse On-Demand Broker
+  templates:
+  - name: concourse-service-adapter
+    release: concourse-service-adapter
+  - name: broker
+    release: on-demand-service-broker
+    manifest: |
+      ---
+      username: "(( broker_http_auth_credentials.identity ))"
+      password: "(( broker_http_auth_credentials.password ))"
+      disable_ssl_cert_verification: "(( ..cf.ha_proxy.skip_cert_verify.value ))"
+      cf:
+        url: https://api.(( $runtime.system_domain ))
+        authentication:
+          url: https://uaa.(( $runtime.system_domain ))
+          user_credentials:
+            username: "(( ..cf.uaa.system_services_credentials.identity ))"
+            password: "(( ..cf.uaa.system_services_credentials.password ))"
+      bosh:
+        url: https://(( $director.hostname || $director.deployment_ip )):25555
+        root_ca_cert: "(( $director.ca_public_key ))"
+        authentication:
+          uaa:
+            url: https://(( $director.hostname || $director.deployment_ip )):8443
+            client_id: "(( $self.uaa_client_name ))"
+            client_secret: "(( $self.uaa_client_secret ))"
+      service_adapter:
+        path: "/var/vcap/packages/concourse-service-adapter/bin/service-adapter"
+      service_deployment:
+        releases:
+        - name: concourse
+          version: 3.3.4
+          jobs:
+          - atc
+          - tsa
+          - baggageclaim
+          - groundcrew
+          - postgresql
+        - name: garden-runc
+          version: 1.9.2
+          jobs:
+          - garden
+        - name: routing
+          version: 0.157.0
+          jobs:
+          - route_registrar
+        stemcell:
+          os: ubuntu-trusty
+          version: (( $self.stemcell_version ))
+      service_catalog:
+        id: D94A086D-203D-4966-A6F1-60A9E2300F72
+        service_name: p.concourse
+        service_description: Concourse service to provide on-demand concourse instance
+        bindable: true
+        plan_updatable: false
+        tags:
+        - concourse
+        - pivotal
+        - on-demand
+        metadata:
+          display_name: On-Demand Concourse
+          provider_display_name: Pcfs
+          long_description: Concourse Deployment on demand
+        global_quotas:
+          service_instance_limit: "(( .concourse-on-demand-broker.service_instance_limit.value
+            ))"
+        global_properties: {}
+        plans:
+        - "(( .properties.small_plan_selector.selected_option.parsed_manifest(small_plan_snippet) ))"
+  resource_definitions:
+  - name: ram
+    type: integer
+    configurable: true
+    default: 3072
+    constraints:
+      min: 1024
+      may_only_increase: true
+      error_message: Decreasing memory is not allowed
+  - name: ephemeral_disk
+    type: integer
+    configurable: true
+    default: 4096
+    constraints:
+      min: 1024
+  - name: persistent_disk
+    type: integer
+    configurable: true
+    default: 9216
+    constraints:
+      min: 1024
+      may_only_increase: true
+      error_message: Decreasing disk size not allowed
+  - name: cpu
+    type: integer
+    configurable: true
+    default: 2
+    constraints:
+      min: 1
+  static_ip: 1
+  dynamic_ip: 0
+  max_in_flight: 100%
+  single_az_only: false
+  instance_definition:
+    name: instances
+    configurable: false
+    default: 1
+  property_blueprints:
+  - name: service_instance_limit
+    type: integer
+    configurable: true
+    default: 20
+    constraints:
+      min: 0
+      max: 50
+  - name: vm_credentials
+    type: salted_credentials
+    default:
+      identity: vcap
+  - name: broker_http_auth_credentials
+    type: simple_credentials
+    default:
+      identity: admin
+  - name: vm_extensions
+    type: multi_select_options
+    configurable: true
+    optional: true
+    options:
+    - name: public_ip
+      label: Allow outbound internet access from service instances (IaaS-dependent)
+      description: Please refer to the Ops Manager documentation for IaaS specific
+        behavior. Log forwarding and backups may require internet access.
+- name: register-on-demand-broker
+  resource_label: Register On-Demand Broker
+  templates:
+  - name: register-broker
+    release: on-demand-service-broker
+    manifest: |
+      ---
+      enable_service_access: true
+      disable_ssl_cert_verification: "(( ..cf.ha_proxy.skip_cert_verify.value ))"
+      broker_name: concourse-odb
+      cf:
+        api_url: https://api.(( $runtime.system_domain ))
+        admin_username: "(( ..cf.uaa.system_services_credentials.identity ))"
+        admin_password: "(( ..cf.uaa.system_services_credentials.password ))"
+  errand: true
+  resource_definitions:
+  - name: ram
+    type: integer
+    configurable: false
+    default: 1024
+    constraints:
+      min: 1024
+  - name: ephemeral_disk
+    type: integer
+    configurable: false
+    default: 2048
+    constraints:
+      min: 1024
+  - name: persistent_disk
+    type: integer
+    configurable: false
+    default: 0
+  - name: cpu
+    type: integer
+    configurable: false
+    default: 1
+    constraints:
+      min: 1
+  static_ip: 0
+  dynamic_ip: 1
+  max_in_flight: 1
+  single_az_only: true
+  instance_definition:
+    name: instances
+    type: integer
+    default: 1
+  property_blueprints:
+  - name: vm_credentials
+    type: salted_credentials
+    default:
+      identity: vcap
+- name: upgrade-all-service-instances
+  resource_label: Upgrade All On-Demand Service Instances
+  templates:
+  - name: upgrade-all-service-instances
+    release: on-demand-service-broker
+  errand: true
+  resource_definitions:
+  - name: ram
+    type: integer
+    configurable: false
+    default: 1024
+    constraints:
+      min: 1024
+  - name: ephemeral_disk
+    type: integer
+    configurable: false
+    default: 2048
+    constraints:
+      min: 1024
+  - name: persistent_disk
+    type: integer
+    configurable: false
+    default: 0
+  - name: cpu
+    type: integer
+    configurable: false
+    default: 1
+    constraints:
+      min: 1
+  static_ip: 0
+  dynamic_ip: 1
+  max_in_flight: 1
+  single_az_only: true
+  instance_definition:
+    name: instances
+    type: integer
+    default: 1
+  property_blueprints:
+  - name: vm_credentials
+    type: salted_credentials
+    default:
+      identity: vcap
+- name: delete-all-service-instances-and-deregister-broker
+  resource_label: Delete All On-Demand Service Instances and Deregister Broker
+  templates:
+  - name: delete-all-service-instances-and-deregister-broker
+    release: on-demand-service-broker
+    manifest: |
+      ---
+      broker_name: concourse-odb
+  errand: true
+  resource_definitions:
+  - name: ram
+    type: integer
+    configurable: false
+    default: 1024
+    constraints:
+      min: 1024
+  - name: ephemeral_disk
+    type: integer
+    configurable: false
+    default: 2048
+    constraints:
+      min: 1024
+  - name: persistent_disk
+    type: integer
+    configurable: false
+    default: 0
+  - name: cpu
+    type: integer
+    configurable: false
+    default: 1
+    constraints:
+      min: 1
+  static_ip: 0
+  dynamic_ip: 1
+  max_in_flight: 1
+  single_az_only: true
+  instance_definition:
+    name: instances
+    type: integer
+    default: 1
+  property_blueprints:
+  - name: vm_credentials
+    type: salted_credentials
+    default:
+      identity: vcap
+property_blueprints:
+- name: quotes_string
+  type: string
+  configurable: false
+  default: '""'
+- type: selector
+  name: small_plan_selector
+  configurable: true
+  default: Plan Active
+  option_templates:
+  - name: inactive
+    select_value: Plan Inactive
+    named_manifests:
+    - name: small_plan_snippet
+      manifest: 
+  - name: active
+    select_value: Plan Active
+    property_blueprints:
+    - name: name
+      type: string
+      configurable: true
+      default: cache-small
+      constraints:
+      - must_match_regex: "^[a-z1-9\\-]{3,30}$"
+        error_message: length must be between 3 and 30 characters and contain only
+          lowercase letters, numbers, and dashes.
+    - name: description
+      type: string
+      configurable: true
+      default: This plan provides a small concourse plan
+      constraints:
+      - must_match_regex: "^.{3,120}$"
+        error_message: length must be between 3 and 120 characters.
+    - name: worker_instances
+      type: integer
+      configurable: true
+      default: 1
+    - name: cf_service_access
+      type: dropdown_select
+      configurable: true
+      default: enable
+      options:
+      - name: enable
+        label: Enabled for all orgs and spaces
+      - name: disable
+        label: Disabled for all orgs and spaces
+      - name: manual
+        label: Leave access unchanged
+    - name: az_single_select
+      type: service_network_az_single_select
+      configurable: true
+      optional: false
+    - name: web_vm_type
+      type: vm_type_dropdown
+      configurable: true
+    - name: worker_vm_type
+      type: vm_type_dropdown
+      configurable: true
+    - name: web_vm_type
+      type: vm_type_dropdown
+      configurable: true
+    - name: db_vm_type
+      type: vm_type_dropdown
+      configurable: true
+    - name: db_disk_size
+      type: disk_type_dropdown
+      configurable: true
+    - name: instance_limit
+      type: integer
+      configurable: true
+      default: 20
+      constraints:
+        max: 100
+        min: 1
+    named_manifests:
+    - name: small_plan_snippet
+      manifest: |
+        name: (( .properties.small_plan_selector.active.name.value ))
+        plan_id: 05491E77-4B47-49D3-97FE-3E8E2B02F905
+        description: (( .properties.small_plan_selector.active.description.value ))
+        metadata:
+          display_name: (( .properties.small_plan_selector.active.name.value ))
+          bullets: [(( .properties.small_plan_selector.active.description.value ))]
+        cf_service_access: (( .properties.small_plan_selector.active.cf_service_access.value ))
+        quotas:
+          service_instance_limit: (( .properties.small_plan_selector.active.instance_limit.value ))
+        instance_groups:
+          - name: web
+            vm_type: (( .properties.small_plan_selector.active.web_vm_type.value ))
+            networks: [(( $self.service_network ))]
+            azs: [(( .properties.small_plan_selector.active.az_single_select.value ))]
+            instances: 1
+          - name: db
+            vm_type: (( .properties.small_plan_selector.active.db_vm_type.value ))
+            networks: [(( $self.service_network ))]
+            azs: [(( .properties.small_plan_selector.active.az_single_select.value ))]
+            instances: 1
+            persistent_disk_type: [(( .properties.small_plan_selector.active.db_disk_size ))]
+          - name: worker
+            vm_type: (( .properties.small_plan_selector.active.worker_vm_type.value ))
+            networks: [(( $self.service_network ))]
+            azs: [(( .properties.small_plan_selector.active.az_single_select.value ))]
+            instances: [(( .properties.small_plan_selector.active.worker_instances.value ))]
+          properties:
+            cf_deployment: ((..cf.deployment_name))
+            app_domain: ((..cf.cloud_controller.apps_domain.value))
