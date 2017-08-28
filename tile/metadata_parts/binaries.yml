@@ -30,7 +30,7 @@ releases:
   url:
 - name: routing
   file: routing-0.157.0.tgz
-  version: 1.9.2
+  version: 0.157.0
   md5: 2f1845c8aea6f3f2efd0ee49fc4d0553
 requires_product_versions:
 - name: cf
