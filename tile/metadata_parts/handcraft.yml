@@ -349,7 +349,7 @@ property_blueprints:
     - name: name
       type: string
       configurable: true
-      default: cache-small
+      default: concourse-small
       constraints:
       - must_match_regex: "^[a-z1-9\\-]{3,30}$"
         error_message: length must be between 3 and 30 characters and contain only
@@ -412,22 +412,22 @@ property_blueprints:
         quotas:
           service_instance_limit: (( .properties.small_plan_selector.active.instance_limit.value ))
         instance_groups:
-          - name: web
-            vm_type: (( .properties.small_plan_selector.active.web_vm_type.value ))
-            networks: [(( $self.service_network ))]
-            azs: [(( .properties.small_plan_selector.active.az_single_select.value ))]
-            instances: 1
-          - name: db
-            vm_type: (( .properties.small_plan_selector.active.db_vm_type.value ))
-            networks: [(( $self.service_network ))]
-            azs: [(( .properties.small_plan_selector.active.az_single_select.value ))]
-            instances: 1
-            persistent_disk_type: [(( .properties.small_plan_selector.active.db_disk_size ))]
-          - name: worker
-            vm_type: (( .properties.small_plan_selector.active.worker_vm_type.value ))
-            networks: [(( $self.service_network ))]
-            azs: [(( .properties.small_plan_selector.active.az_single_select.value ))]
-            instances: [(( .properties.small_plan_selector.active.worker_instances.value ))]
-          properties:
-            cf_deployment: ((..cf.deployment_name))
-            app_domain: ((..cf.cloud_controller.apps_domain.value))
+        - name: web
+          vm_type: (( .properties.small_plan_selector.active.web_vm_type.value ))
+          networks: [(( $self.service_network ))]
+          azs: [(( .properties.small_plan_selector.active.az_single_select.value ))]
+          instances: 1
+        - name: db
+          vm_type: (( .properties.small_plan_selector.active.db_vm_type.value ))
+          networks: [(( $self.service_network ))]
+          azs: [(( .properties.small_plan_selector.active.az_single_select.value ))]
+          instances: 1
+          persistent_disk_type: [(( .properties.small_plan_selector.active.db_disk_size ))]
+        - name: worker
+          vm_type: (( .properties.small_plan_selector.active.worker_vm_type.value ))
+          networks: [(( $self.service_network ))]
+          azs: [(( .properties.small_plan_selector.active.az_single_select.value ))]
+          instances: [(( .properties.small_plan_selector.active.worker_instances.value ))]
+        properties:
+          cf_deployment: ((..cf.deployment_name))
+          app_domain: ((..cf.cloud_controller.apps_domain.value))
