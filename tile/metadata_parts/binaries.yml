@@ -13,8 +13,8 @@ releases:
   version: 0.17.0
   md5: f74858b0c7930f17e03e5022ecf0fbfd
   url:
-- name: concourse-service-adaptor
-  file: concourse-service-adaptor-0+dev.3.tgz
+- name: concourse-service-adapter
+  file: concourse-service-adapter-0+dev.3.tgz
   version: 0+dev.3
   md5: 13f54ab842cd0ee3702d6c50d4ed5550
   url:

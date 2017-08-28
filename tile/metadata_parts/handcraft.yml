@@ -62,7 +62,7 @@ job_types:
   resource_label: Concourse On-Demand Broker
   templates:
   - name: service-adapter
-    release: concourse-service-adaptor
+    release: concourse-service-adapter
   - name: broker
     release: on-demand-service-broker
     manifest: |
