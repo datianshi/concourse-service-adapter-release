@@ -422,7 +422,7 @@ property_blueprints:
           networks: [(( $self.service_network ))]
           azs: [(( .properties.small_plan_selector.active.az_single_select.value ))]
           instances: 1
-          persistent_disk_type: [(( .properties.small_plan_selector.active.db_disk_size ))]
+          persistent_disk_type: [(( .properties.small_plan_selector.active.db_disk_size.value ))]
         - name: worker
           vm_type: (( .properties.small_plan_selector.active.worker_vm_type.value ))
           networks: [(( $self.service_network ))]
