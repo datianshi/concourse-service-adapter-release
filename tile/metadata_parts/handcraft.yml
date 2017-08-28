@@ -61,7 +61,7 @@ job_types:
 - name: concourse-on-demand-broker
   resource_label: Concourse On-Demand Broker
   templates:
-  - name: concourse-service-adapter
+  - name: service-adapter
     release: concourse-service-adapter
   - name: broker
     release: on-demand-service-broker
@@ -86,7 +86,7 @@ job_types:
             client_id: "(( $self.uaa_client_name ))"
             client_secret: "(( $self.uaa_client_secret ))"
       service_adapter:
-        path: "/var/vcap/packages/concourse-service-adapter/bin/service-adapter"
+        path: "/var/vcap/packages/odb-service-adapter/bin/service-adapter"
       service_deployment:
         releases:
         - name: concourse
