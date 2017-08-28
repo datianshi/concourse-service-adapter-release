@@ -42,19 +42,19 @@ form_types:
         label: AZ to deploy Concourse instances
         description: One of the AZs of the service network (configured in the Ops
           Manager Director tile). Changes can cause data loss.
-      - reference: ".properties.small_plan_selector.active.web.vm_type"
+      - reference: ".properties.small_plan_selector.active.web_vm_type"
         label: Web Server VM type
         description: Web instance type
-      - reference: ".properties.small_plan_selector.active.db.vm_type"
+      - reference: ".properties.small_plan_selector.active.db_vm_type"
         label: Database VM Type
         description: Database instance type
-      - reference: ".properties.small_plan_selector.active.db.disk_size"
+      - reference: ".properties.small_plan_selector.active.db_disk_size"
         label: Database Disk Size
         description: Persistent disk for concourse database
-      - reference: ".properties.small_plan_selector.active.worker.vm_type"
+      - reference: ".properties.small_plan_selector.active.worker_vm_type"
         label: Worker VM Type
         description: Worker instance type
-      - reference: ".properties.small_plan_selector.active.worker.instances"
+      - reference: ".properties.small_plan_selector.active.worker_instances"
         label: Number of instances worker
         description: Number of instances worker
 job_types:
@@ -384,9 +384,6 @@ property_blueprints:
       type: vm_type_dropdown
       configurable: true
     - name: worker_vm_type
-      type: vm_type_dropdown
-      configurable: true
-    - name: web_vm_type
       type: vm_type_dropdown
       configurable: true
     - name: db_vm_type
