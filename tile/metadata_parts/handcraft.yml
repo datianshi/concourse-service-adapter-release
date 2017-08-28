@@ -8,8 +8,6 @@ service_broker: true
 post_deploy_errands:
 - name: register-on-demand-broker
   run_post_deploy_errand_default: true
-- name: on-demand-broker-smoke-tests
-  run_post_deploy_errand_default: true
 - name: upgrade-all-service-instances
   run_post_deploy_errand_default: true
 pre_delete_errands:
