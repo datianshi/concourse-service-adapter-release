@@ -16,7 +16,7 @@ releases:
 - name: concourse-service-adapter
   file: concourse-service-adapter-0+dev.3.tgz
   version: 0+dev.3
-  md5: 13f54ab842cd0ee3702d6c50d4ed5550
+  md5: c382b7ec0f5e9621670031ac422347b8
   url:
 - name: concourse
   file: concourse-3.3.4.tgz

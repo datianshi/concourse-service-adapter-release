@@ -13,10 +13,10 @@ releases:
   version: 0.17.0
   md5: f74858b0c7930f17e03e5022ecf0fbfd
   url: 
-- name: concourse-service-adaptor
-  file: concourse-service-adaptor-0+dev.3.tgz
+- name: concourse-service-adapter
+  file: concourse-service-adapter-0+dev.3.tgz
   version: 0+dev.3
-  md5: 13f54ab842cd0ee3702d6c50d4ed5550
+  md5: c382b7ec0f5e9621670031ac422347b8
   url: 
 - name: concourse
   file: concourse-3.3.4.tgz
@@ -30,7 +30,7 @@ releases:
   url: 
 - name: routing
   file: routing-0.157.0.tgz
-  version: 1.9.2
+  version: 0.157.0
   md5: 2f1845c8aea6f3f2efd0ee49fc4d0553
 requires_product_versions:
 - name: cf
@@ -46,16 +46,11 @@ icon_image: 'iVBORw0KGgoAAAANSUhEUgAAAGwAAABSCAYAAACxFjEQAAABfGlDQ1BJQ0MgUHJvZml
 rank: 50
 service_broker: true
 post_deploy_errands:
-- name: broker-registrar
-  run_post_deploy_errand_default: true
 - name: register-on-demand-broker
-  run_post_deploy_errand_default: true
-- name: on-demand-broker-smoke-tests
   run_post_deploy_errand_default: true
 - name: upgrade-all-service-instances
   run_post_deploy_errand_default: true
 pre_delete_errands:
-- name: broker-deregistrar
 - name: delete-all-service-instances-and-deregister-broker
 form_types:
 - name: concourse-small
@@ -87,26 +82,26 @@ form_types:
         label: AZ to deploy Concourse instances
         description: One of the AZs of the service network (configured in the Ops
           Manager Director tile). Changes can cause data loss.
-      - reference: ".properties.small_plan_selector.active.web.vm_type"
+      - reference: ".properties.small_plan_selector.active.web_vm_type"
         label: Web Server VM type
         description: Web instance type
-      - reference: ".properties.small_plan_selector.active.db.vm_type"
+      - reference: ".properties.small_plan_selector.active.db_vm_type"
         label: Database VM Type
         description: Database instance type
-      - reference: ".properties.small_plan_selector.active.db.disk_size"
+      - reference: ".properties.small_plan_selector.active.db_disk_size"
         label: Database Disk Size
         description: Persistent disk for concourse database
-      - reference: ".properties.small_plan_selector.active.worker.vm_type"
+      - reference: ".properties.small_plan_selector.active.worker_vm_type"
         label: Worker VM Type
         description: Worker instance type
-      - reference: ".properties.small_plan_selector.active.worker.instances"
+      - reference: ".properties.small_plan_selector.active.worker_instances"
         label: Number of instances worker
         description: Number of instances worker
 job_types:
 - name: concourse-on-demand-broker
   resource_label: Concourse On-Demand Broker
   templates:
-  - name: concourse-service-adapter
+  - name: service-adapter
     release: concourse-service-adapter
   - name: broker
     release: on-demand-service-broker
@@ -131,7 +126,7 @@ job_types:
             client_id: "(( $self.uaa_client_name ))"
             client_secret: "(( $self.uaa_client_secret ))"
       service_adapter:
-        path: "/var/vcap/packages/concourse-service-adapter/bin/service-adapter"
+        path: "/var/vcap/packages/odb-service-adapter/bin/service-adapter"
       service_deployment:
         releases:
         - name: concourse
@@ -394,7 +389,7 @@ property_blueprints:
     - name: name
       type: string
       configurable: true
-      default: cache-small
+      default: concourse-small
       constraints:
       - must_match_regex: "^[a-z1-9\\-]{3,30}$"
         error_message: length must be between 3 and 30 characters and contain only
@@ -431,9 +426,6 @@ property_blueprints:
     - name: worker_vm_type
       type: vm_type_dropdown
       configurable: true
-    - name: web_vm_type
-      type: vm_type_dropdown
-      configurable: true
     - name: db_vm_type
       type: vm_type_dropdown
       configurable: true
@@ -460,22 +452,22 @@ property_blueprints:
         quotas:
           service_instance_limit: (( .properties.small_plan_selector.active.instance_limit.value ))
         instance_groups:
-          - name: web
-            vm_type: (( .properties.small_plan_selector.active.web_vm_type.value ))
-            networks: [(( $self.service_network ))]
-            azs: [(( .properties.small_plan_selector.active.az_single_select.value ))]
-            instances: 1
-          - name: db
-            vm_type: (( .properties.small_plan_selector.active.db_vm_type.value ))
-            networks: [(( $self.service_network ))]
-            azs: [(( .properties.small_plan_selector.active.az_single_select.value ))]
-            instances: 1
-            persistent_disk_type: [(( .properties.small_plan_selector.active.db_disk_size ))]
-          - name: worker
-            vm_type: (( .properties.small_plan_selector.active.worker_vm_type.value ))
-            networks: [(( $self.service_network ))]
-            azs: [(( .properties.small_plan_selector.active.az_single_select.value ))]
-            instances: [(( .properties.small_plan_selector.active.worker_instances.value ))]
-          properties:
-            cf_deployment: ((..cf.deployment_name))
-            app_domain: ((..cf.cloud_controller.apps_domain.value))
+        - name: web
+          vm_type: (( .properties.small_plan_selector.active.web_vm_type.value ))
+          networks: [(( $self.service_network ))]
+          azs: [(( .properties.small_plan_selector.active.az_single_select.value ))]
+          instances: 1
+        - name: db
+          vm_type: (( .properties.small_plan_selector.active.db_vm_type.value ))
+          networks: [(( $self.service_network ))]
+          azs: [(( .properties.small_plan_selector.active.az_single_select.value ))]
+          instances: 1
+          persistent_disk_type: [(( .properties.small_plan_selector.active.db_disk_size.value ))]
+        - name: worker
+          vm_type: (( .properties.small_plan_selector.active.worker_vm_type.value ))
+          networks: [(( $self.service_network ))]
+          azs: [(( .properties.small_plan_selector.active.az_single_select.value ))]
+          instances: [(( .properties.small_plan_selector.active.worker_instances.value ))]
+        properties:
+          cf_deployment: ((..cf.deployment_name))
+          app_domain: ((..cf.cloud_controller.apps_domain.value))
