@@ -1,8 +1,8 @@
 ---
 name: pcfs-concourse
-product_version: 0.0.1
-metadata_version: '1.10'
-minimum_version_for_upgrade: 0.0.0
+product_version: 0.0.4
+metadata_version: '1.11'
+minimum_version_for_upgrade: 0.0.1
 stemcell_criteria:
   os: ubuntu-trusty
   version: '3421.9'
@@ -14,9 +14,9 @@ releases:
   md5: f74858b0c7930f17e03e5022ecf0fbfd
   url:
 - name: concourse-service-adapter
-  file: concourse-service-adapter-0+dev.3.tgz
-  version: 0+dev.3
-  md5: c382b7ec0f5e9621670031ac422347b8
+  file: concourse-service-adapter-0+dev.5.tgz
+  version: 0+dev.5
+  md5: 42d835d02d5ec6bf6471b47aa4799473
   url:
 - name: concourse
   file: concourse-3.3.4.tgz
@@ -37,4 +37,4 @@ requires_product_versions:
   version: ">= 1.10.3"
 provides_product_versions:
 - name: pcfs-concourse
-  version: 0.0.1
+  version: 0.0.4
